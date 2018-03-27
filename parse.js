@@ -59,33 +59,38 @@ function parseFile(file)
     }
 }
 
-// if (process.argv.length > 2)
-//     team = process.argv[2];
+if (process.argv.length > 2)
+    team = process.argv[2];
 
 for (var i=1; i<=20; ++i)
     parseFile(`${i}.html`);
 // console.log(teams["Rico Suave"]);
 // console.log(opponents);
 
-function run(team)
-{
-    console.log(`Team: ${team}`);
-    var results = teams[team];
-    var total = 0;
-    for (var i=0; i<opponents.length; ++i) {
-        let best;
-        let bestScore;
-        for (var j=0; j<results.length; ++j) {
-            var score = compareResults(results[j], opponents[i].result);
-            if (best === undefined || score > bestScore) {
-                bestScore = score;
-                best = j;
-            }
+// function run(team)
+// {
+console.log(`Team: ${team}`);
+var results = teams[team];
+var total = 0;
+for (var i=0; i<opponents.length; ++i) {
+    let best;
+    let bestScore;
+    for (var j=0; j<results.length; ++j) {
+        var score = compareResults(results[j], opponents[i].result);
+        if (best === undefined || score > bestScore) {
+            bestScore = score;
+            best = j;
         }
-        total += bestScore;
-        console.log(`Game ${i} against ${opponents[i].team} best score was ${bestScore} game ${best}`);
     }
-    console.log(`Total score ${total} average ${total / opponents.length}\n`);
+    total += bestScore;
+    console.log(`Game ${i} against ${opponents[i].team} best score was ${bestScore} game ${best}`);
 }
+console.log(`Total score ${total} average ${total / opponents.length}\n`);
+// }
 
-Object.keys(teams).forEach(run);
+// function permute(team)
+// {
+
+// }
+
+// Object.keys(teams).forEach(run);
